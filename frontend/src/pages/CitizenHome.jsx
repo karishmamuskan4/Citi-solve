@@ -7,7 +7,7 @@ const CitizenHome = () => {
   const { user } = useAuth();
   const token = localStorage.getItem("token");
   useEffect(() => {
-    fetch("http://localhost:5000/api/auth/dashboard", {
+    fetch(`${import.meta.env.VITE_API_URL}/api/auth/dashboard`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -35,7 +35,7 @@ const MyComplaints = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:5000/api/complaints/my",
+          `${import.meta.env.VITE_API_URL}/api/complaints/my`,
           { headers: { Authorization: `Bearer ${token}` } },
         );
         const data = await response.json();

@@ -40,8 +40,8 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/complaints/all",
-        { headers: { Authorization: `Bearer ${token}` } }
+        `${import.meta.env.VITE_API_URL}/api/complaints/all`,
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       const data = await response.json();
       if (response.ok) setComplaints(data.complaints);
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:5000/api/complaints/${id}/status`,
+        `${import.meta.env.VITE_API_URL}/api/complaints/${id}/status`,
         {
           method: "PATCH",
           headers: {
@@ -66,14 +66,14 @@ const AdminDashboard = () => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ status: newStatus }),
-        }
+        },
       );
       const data = await response.json();
       if (response.ok) {
         setComplaints((prev) =>
           prev.map((c) =>
-            c._id === id ? { ...c, status: data.complaint.status } : c
-          )
+            c._id === id ? { ...c, status: data.complaint.status } : c,
+          ),
         );
         setSelectedStatus((prev) => ({ ...prev, [id]: "" }));
       }
@@ -96,8 +96,7 @@ const AdminDashboard = () => {
       c.description?.toLowerCase().includes(q) ||
       c.location?.toLowerCase().includes(q) ||
       c.ward?.toLowerCase().includes(q);
-    const matchStatus =
-      statusFilter === "all" || c.status === statusFilter;
+    const matchStatus = statusFilter === "all" || c.status === statusFilter;
     const matchCategory =
       categoryFilter === "all" || c.category === categoryFilter;
     return matchSearch && matchStatus && matchCategory;
@@ -105,7 +104,9 @@ const AdminDashboard = () => {
 
   const total = complaints.length;
   const open = complaints.filter((c) => c.status === "pending").length;
-  const inProgress = complaints.filter((c) => c.status === "in-progress").length;
+  const inProgress = complaints.filter(
+    (c) => c.status === "in-progress",
+  ).length;
   const resolved = complaints.filter((c) => c.status === "resolved").length;
 
   const categories = [...new Set(complaints.map((c) => c.category))];
@@ -208,8 +209,7 @@ const AdminDashboard = () => {
               {filtered.map((c) => {
                 const statusStyle =
                   statusColors[c.status] || statusColors["pending"];
-                const catColor =
-                  categoryColors[c.category] || "#94a3b8";
+                const catColor = categoryColors[c.category] || "#94a3b8";
                 return (
                   <tr key={c._id}>
                     <td>
