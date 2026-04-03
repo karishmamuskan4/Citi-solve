@@ -1,0 +1,91 @@
+.complaint-card {
+  width: 150px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* TOP BAR */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.complaint-id {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* STATUS */
+.status {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.open {
+  background: #fff3cd;
+  color: #f59e0b;
+}
+
+.status.closed {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+/* TITLE */
+.complaint-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 14px;
+}
+
+/* INFO ROWS */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #475569;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.info-row span:first-child {
+  font-weight: 600;
+}
+
+/* CATEGORY TAG */
+.category-tag {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* DESCRIPTION */
+.description {
+  margin-top: 12px;
+}
+
+.description span {
+  font-weight: 600;
+  font-size: 14px;
+  color: #334155;
+}
+
+.description p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.4;
+}

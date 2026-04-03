@@ -1,0 +1,104 @@
+/* ===== LOGIN PAGE WRAPPER ===== */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #6b7be8, #7b5cc6);
+}
+
+/* ===== LOGIN CARD ===== */
+.login-card {
+  width: 390px;
+  background: #ffffff;
+  padding: 32px 30px;
+  border-radius: 12px;
+  height: 580px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* ===== TITLE ===== */
+.login-card h2 {
+  margin-top: 20px;
+  margin-bottom: 24px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 50px;
+}
+
+
+/* ===== FORM ===== */
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===== LABEL ===== */
+.login-card label {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* ===== INPUT ===== */
+.login-card input {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+
+  border: 1.5px solid #d1d5db;
+  outline: none;
+}
+
+.login-card input:focus {
+  border-color: #6b7be8;
+}
+
+/* ===== LOGIN BUTTON ===== */
+.login-card button {
+  margin-top: 10px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #6b7be8, #7b5cc6);
+  transition: all 0.25s ease;
+}
+
+.login-card button:hover {
+  opacity: 0.9;
+}
+
+/* ===== REGISTER LINK ===== */
+.login-card p {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.login-card a {
+  color: #6b7be8;
+  font-weight: 500;
+  text-decoration: none;
+}
+.login-card :placeholder-shown{ 
+  font-size: 23px;;
+}
+.login-card P{
+  font-size: 16px;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e5e7eb; /* light grey */
+  margin: 18px 0;
+}

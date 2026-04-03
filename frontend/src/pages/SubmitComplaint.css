@@ -1,0 +1,81 @@
+.submit-container {
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(135deg, #e9eef6, #dde3f0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.complaint-card {
+  background: white;
+  width: 800px;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.complaint-card h2 {
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 42px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.complaint-card label {
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.complaint-card input,
+.complaint-card select,
+.complaint-card textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.complaint-card input:focus,
+.complaint-card select:focus,
+.complaint-card textarea:focus {
+  outline: none;
+  border-color: #6c63ff;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.cancel-btn {
+  background: #e0e0e0;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #6c63ff, #7b5cff);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  opacity: 0.95;
+}
