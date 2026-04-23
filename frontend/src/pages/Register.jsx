@@ -49,8 +49,7 @@ const Register = () => {
         alert(data.message || "Registration failed");
       }
     } catch (error) {
-      console.log(error);
-      alert("Server error");
+      alert(`Server error: ${error.message}`);
     }
 
     setFormData({
