@@ -27,6 +27,7 @@ const Register = () => {
       alert("password doesn't match");
       return;
     }
+
     try {
       const response = await fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
@@ -40,8 +41,26 @@ const Register = () => {
           role: formData.role,
         }),
       });
-      const data = await response.json();
+
+      // 1. Get the response content type
+      const contentType = response.headers.get("content-type");
+      let data;
+
+      // 2. Safe parsing: Only parse if it's actually JSON
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        // If it's HTML/Text, grab it as raw text
+        const rawText = await response.text();
+        console.error("Server returned non-JSON response:", rawText);
+        alert(
+          `Server Error: Received unexpected response from server (Status ${response.status}).`,
+        );
+        return;
+      }
+
       console.log("REGISTER RESPONSE:", data);
+
       if (response.ok) {
         alert("Registered successfully! Please login.");
         navigate("/login");
@@ -49,7 +68,8 @@ const Register = () => {
         alert(data.message || "Registration failed");
       }
     } catch (error) {
-      alert(`Server error: ${error.message}`);
+      console.error("Registration Error:", error);
+      alert(`Network/Server error: ${error.message}`);
     }
 
     setFormData({
