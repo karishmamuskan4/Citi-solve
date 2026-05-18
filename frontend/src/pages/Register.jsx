@@ -6,6 +6,10 @@ import { useNavigate, Link } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.VITE_API_URL;
+
+  // Track network request state for visual transitions
+  const [isLoading, setIsLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,6 +17,7 @@ const Register = () => {
     role: "citizen",
     confirmPassword: "",
   });
+
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData({
@@ -20,6 +25,7 @@ const Register = () => {
       [name]: value,
     });
   }
+
   async function handleRegister(e) {
     e.preventDefault();
 
@@ -27,6 +33,9 @@ const Register = () => {
       alert("password doesn't match");
       return;
     }
+
+    // Activate loading and lock UI actions
+    setIsLoading(true);
 
     try {
       const response = await fetch(`${BASE_URL}/api/auth/register`, {
@@ -42,20 +51,18 @@ const Register = () => {
         }),
       });
 
-      // 1. Get the response content type
       const contentType = response.headers.get("content-type");
       let data;
 
-      // 2. Safe parsing: Only parse if it's actually JSON
       if (contentType && contentType.includes("application/json")) {
         data = await response.json();
       } else {
-        // If it's HTML/Text, grab it as raw text
         const rawText = await response.text();
         console.error("Server returned non-JSON response:", rawText);
         alert(
           `Server Error: Received unexpected response from server (Status ${response.status}).`,
         );
+        setIsLoading(false);
         return;
       }
 
@@ -70,16 +77,19 @@ const Register = () => {
     } catch (error) {
       console.error("Registration Error:", error);
       alert(`Network/Server error: ${error.message}`);
+    } finally {
+      // Guarantees execution cleanup even on processing errors
+      setIsLoading(false);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        role: "citizen",
+        confirmPassword: "",
+      });
     }
-
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      role: "citizen",
-      confirmPassword: "",
-    });
   }
+
   return (
     <div className="container">
       <form onSubmit={handleRegister}>
@@ -140,7 +150,20 @@ const Register = () => {
             onChange={handleChange}
           />{" "}
         </label>
-        <button type="submit">Create Account</button>
+        {/* Dynamic assignment for disabled states and conditional loading layout */}
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={isLoading ? "btn-loading" : ""}
+        >
+          {isLoading ? (
+            <span className="button-content">
+              <span className="spinner"></span> Creating Account...
+            </span>
+          ) : (
+            "Create Account"
+          )}
+        </button>
         <p>
           Already have an account?<Link to="/login">Sign In</Link>
         </p>
